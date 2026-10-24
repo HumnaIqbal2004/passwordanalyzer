@@ -42,16 +42,38 @@ class PasswordAnalyzer:
 
 
     def lowercase_check(self):
-        return
+        lowercase_check = any(char.islower() for char in self.password)
+        if lowercase_check == True:
+            return 25
+        else:
+            return 0
 
 
     def uppercase_check(self):
-        return
+        uppercase_check = any(char.isupper() for char in self.password)
+        if uppercase_check == True:
+            return 25
+        else:
+            return 0
 
 
     def score_calc(self):
-        score = self.length_check() + self.special_char_check()
+        score = self.length_check() + self.special_char_check() + self.uppercase_check() + self.lowercase_check()
+
+        if score in range (0, 26):
+            print ("Weak password")
+
+        if score in range (26, 51):
+            print ("Okay password")
+
+        if score in range (51, 76):
+            print ("Good password")
+
+        if score in range (76, 101):
+            print ("Great password")
         print(score)
+
+
 
 
 
