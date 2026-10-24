@@ -6,10 +6,10 @@ class PasswordAnalyzer:
         self.password = password
 
 #To check for Password complexity (out of 100, max per 25)
-#• Uppercase letters (A–Z) (25 if upper)
-#• Lowercase letters (a–z) (25 if lower)
-#• Numbers (0–16)  (5 points if less than 8) (10 if 10) (15 if 12) (20 if 14) (25 if 16)
+#• Uppercase and Lowercase letters (A–Z) (25)
+#• Length (0–16)  (5 points if less than 8) (10 if 10) (15 if 12) (20 if 14) (25 if 16)
 #• Special characters/symbols (like @, #, $, %, !, or spaces)
+#• Contains numbers (0-9)
 
     def length_check(self):
         if len(self.password) in range(0,9):
@@ -27,13 +27,20 @@ class PasswordAnalyzer:
         if len(self.password) > 14:
             return 25
 
+    def numbers_check(self):
+        contains_number = any(char.isdigit() for char in self.password)
+
+        if contains_number:
+            return 25
+        else:
+            return 0
 
 
     def special_char_check(self):
         special_char = {"@", "#", "$", "%", "!"}
         contains_special = any(char in self.password for char in special_char)
 
-        if contains_special == True:
+        if contains_special:
             return 25
 
         else:
@@ -41,24 +48,19 @@ class PasswordAnalyzer:
 
 
 
-    def lowercase_check(self):
+    def lowercase_and_uppercase_check(self):
         lowercase_check = any(char.islower() for char in self.password)
-        if lowercase_check == True:
-            return 25
-        else:
-            return 0
-
-
-    def uppercase_check(self):
         uppercase_check = any(char.isupper() for char in self.password)
-        if uppercase_check == True:
+
+        if lowercase_check and uppercase_check:
             return 25
         else:
             return 0
+
 
 
     def score_calc(self):
-        score = self.length_check() + self.special_char_check() + self.uppercase_check() + self.lowercase_check()
+        score = self.length_check() + self.special_char_check() + self.lowercase_and_uppercase_check() + self.numbers_check()
 
         if score in range (0, 26):
             print ("Weak password")
@@ -72,9 +74,6 @@ class PasswordAnalyzer:
         if score in range (76, 101):
             print ("Great password")
         print(score)
-
-
-
 
 
 
