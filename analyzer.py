@@ -5,11 +5,13 @@ class PasswordAnalyzer:
     def __init__  (self, password):
         self.password = password
 
-#To check for Password complexity (out of 100, max per 25)
+#To check for Password complexity (score:out of 100, max per 25)
 #• Uppercase and Lowercase letters (A–Z) (25)
 #• Length (0–16)  (5 points if less than 8) (10 if 10) (15 if 12) (20 if 14) (25 if 16)
 #• Special characters/symbols (like @, #, $, %, !, or spaces)
 #• Contains numbers (0-9)
+#• Common PassWord list if password in common password = weak password
+
 
     def length_check(self):
         if len(self.password) in range(0,9):
