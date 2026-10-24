@@ -29,6 +29,7 @@ class PasswordAnalyzer:
         if len(self.password) > 14:
             return 25
 
+
     def numbers_check(self):
         contains_number = any(char.isdigit() for char in self.password)
 
@@ -49,7 +50,6 @@ class PasswordAnalyzer:
             return 0
 
 
-
     def lowercase_and_uppercase_check(self):
         lowercase_check = any(char.islower() for char in self.password)
         uppercase_check = any(char.isupper() for char in self.password)
@@ -60,9 +60,22 @@ class PasswordAnalyzer:
             return 0
 
 
+    def common_pass_check(self):
+        with open("common_password.txt") as common_passwords:
+            common_password_set =  {line.strip() for line in common_passwords}
+
+        if self.password in common_password_set:
+            return True
+
 
     def score_calc(self):
         score = self.length_check() + self.special_char_check() + self.lowercase_and_uppercase_check() + self.numbers_check()
+
+        self.common_pass_check()
+
+        if self.common_pass_check() == True:
+            score = 0
+            print("Password was found in common password list")
 
         if score in range (0, 26):
             print ("Weak password")
@@ -77,6 +90,7 @@ class PasswordAnalyzer:
             print ("Great password")
         print(score)
 
+        
 
 
 user_password = input("Please enter a password: ")
