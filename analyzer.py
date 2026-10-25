@@ -1,4 +1,5 @@
-
+import breaker
+import breaker_salt
 #Python Script to evaluate password strength
 
 class PasswordAnalyzer:
@@ -97,3 +98,14 @@ user_password = input("Please enter a password: ")
 analyzer = PasswordAnalyzer(user_password)
 analyzer.score_calc()
 
+dictionary_attack_start = input("Start dictionary attack simulation? (Y/N) ").lower()
+
+if dictionary_attack_start == "y":
+
+    breaker.dictionary_attack(user_password)
+
+
+dictionary_attack_salt_start = input("Start dictionary salt attack simulation? (Y/N) ").lower()
+
+if dictionary_attack_salt_start == "y":
+    breaker_salt.dictionary_attack_salt(user_password)
