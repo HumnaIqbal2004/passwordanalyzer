@@ -71,7 +71,6 @@ class PasswordAnalyzer:
     def score_calc(self):
         score = self.length_check() + self.special_char_check() + self.lowercase_and_uppercase_check() + self.numbers_check()
 
-        self.common_pass_check()
 
         if self.common_pass_check() == True:
             score = 0
