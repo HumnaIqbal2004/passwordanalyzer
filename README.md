@@ -5,7 +5,7 @@
 ![Paradigm](https://img.shields.io/badge/Paradigm-OOP-orange?style=for-the-badge) <br>
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge) <br>
 
->A cybersecurity took designed to evaluate password complexity and simulate dictionary attacks against cryptographic SHA-256 hashes with and without salt.
+>A cybersecurity tool designed to evaluate password complexity and simulate dictionary attacks against cryptographic SHA-256 hashes with and without salt.
 
 ---
 
